@@ -1,2 +1,2 @@
 # MedicalCare
-Tesis del chamo de urbe.
+Api de sistema de inventario, donde se manejan usuarios y equipos.
