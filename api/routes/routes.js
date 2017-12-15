@@ -4,6 +4,12 @@ module.exports = function(app) {
   var controller = require('../controllers/controllers');
 
 
+
+//----------------------------------
+//RUTA GENERAL
+//----------------------------------
+app.route('/').get(controller.index)
+
 //----------------------------------
 //RUTAS PARA - EQUIPOS -
 //----------------------------------
