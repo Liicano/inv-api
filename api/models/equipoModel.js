@@ -11,7 +11,8 @@ var EquipoSchema = new Schema({
   modelo: {type: String},
   fecha_compra: {type: Date},
   fecha_instalacion: {type: Date},
-  proveedor: {type: String}
+  proveedor: {type: String},
+  status: {type: String}  
 });
 
 module.exports = mongoose.model('Equipos', EquipoSchema);

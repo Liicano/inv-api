@@ -1,4 +1,4 @@
-'use strict';
+  'use strict';
 var mongoose = require('mongoose'),
 Equipos = mongoose.model('Equipos'),
 Usuarios = mongoose.model('Usuarios');
@@ -73,7 +73,10 @@ exports.Ver_Usuarios = function(req, res) {
   Usuarios.find({}, function(err, usuarios) {
     if (err)
       res.send(err);
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.json(usuarios);
+
   });
 };
 
@@ -95,6 +98,23 @@ exports.Ver_Usuario = function(req, res) {
   res.json(usuario);
 })
 };
+
+//ENCONTRAR USUARIO POR CEDULA
+exports.CheckLogin = function(req, res) {
+var password = req.body.password;
+var Check = false;
+  Usuarios.findOne({ 'cedula': req.body.cedula }, function (err, usuario) {
+  if (err) 
+    res.send(err);
+  if (usuario && usuario.password == password){Check = true;}
+res.json({
+  usuario:usuario,
+  Check:Check
+});
+})
+};
+
+
 
 
 //MODIFICAR UN USUARIO
