@@ -30,11 +30,19 @@ app.route('/login').post(controller.CheckLogin);
       .get(/*authController.isAuthenticated,*/ controller.Ver_Usuarios)
       .post(/*authController.isAuthenticated,*/ controller.Ingresar_Usuario);
 
+      //findByEmail
+    app.route('/usuarioEmail/:email')
+      .get(controller.findByEmail);
+
     app.route('/usuario/:cedula')
       .get(/*authController.isAuthenticated,*/ controller.Ver_Usuario)
       .put(/*authController.isAuthenticated,*/ controller.Modificar_Usuario)
       .delete(/*authController.isAuthenticated,*/ controller.Eliminar_Usuario);
 
+       app.route('/usuarioID/:id')
+       .delete(/*authController.isAuthenticated,*/ controller.Eliminar_Usuario_id);
 
-      
+       //ENVIAR EMAIL DE RECUPERACION
+      app.route('/recover/:email/:password')
+      .post(controller.sendEmail);
 };

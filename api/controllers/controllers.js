@@ -1,4 +1,8 @@
   'use strict';
+
+const nodemailer = require('nodemailer');
+
+
 var mongoose = require('mongoose'),
 Equipos = mongoose.model('Equipos'),
 Usuarios = mongoose.model('Usuarios');
@@ -99,6 +103,19 @@ exports.Ver_Usuario = function(req, res) {
 })
 };
 
+
+//ENCONTRAR USUARIO POR EMAIL
+exports.findByEmail = function(req, res) {
+  console.log(req.params.email);
+  Usuarios.findOne({ 'correo': req.params.email }, function (err, usuario) {
+  if (err) 
+    res.send(err);
+  res.json(usuario);
+})
+};
+
+
+
 //ENCONTRAR USUARIO POR CEDULA
 exports.CheckLogin = function(req, res) {
 var password = req.body.password;
@@ -136,4 +153,58 @@ Usuarios.remove({
       res.send(err);
     res.json({ message: 'Usuario eliminado con exito' });
   });
+};
+
+//ELIMINAR POR ID
+exports.Eliminar_Usuario_id = function(req, res) {
+Usuarios.remove({
+    _id: req.params.id
+  }, function(err, usuario) {
+    if (err)
+      res.send(err);
+    res.json({ message: 'Usuario eliminado con exito BY ID' });
+  });
+};
+
+
+
+//ENVIAR EMAIL DE RECUPERACION DE USUARIO
+exports.sendEmail = function(req, res) {
+ console.log(req.params.email);
+  console.log(req.params.password);
+
+ let transporter = nodemailer.createTransport({
+              pool:true,
+              host: 'insignia.com.ve',
+              port: 465,
+              secure: true, // secure:true for port 465, secure:false for port 587
+              auth: {
+                  user: 'notificaciones@insignia.com.ve',
+                  pass: 'qwe123#'
+              },
+              tls: {
+                  rejectUnauthorized: false
+              }
+              
+          });
+
+          // setup email data with unicode symbols
+          let mailOptions = {
+              from: '"MedicalCare 👻" <notificaciones@insignia.com.ve>', // sender address
+              to: req.params.email, // list of receivers
+              subject: 'Recuperacion de contraseña', // Subject line
+              text: '', // plain text body
+              html: '<br>Su peticion ha sido procesada, Su contraseña es (<i>'+req.params.password+'</i>)</br>'
+          };
+
+          // send mail with defined transport object
+          transporter.sendMail(mailOptions, (error, info) => {
+              if (error) {
+                  return console.log(error);
+              }
+              console.log('Message %s sent: %s', info.messageId, info.response);
+              res.send("¡Correo enviado con exito!");
+          });
+
+
 };
