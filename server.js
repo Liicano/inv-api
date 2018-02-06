@@ -11,7 +11,7 @@ var passport = require('passport');
   
 // CONEXION A LA BBDD DE MONGO
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/MedicalCaredb'); 
+mongoose.connect('mongodb://localhost/AudioVisualDB'); 
 
 // Passport - SESIONES -
 app.use(passport.initialize());

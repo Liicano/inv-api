@@ -11,7 +11,7 @@ Usuarios = mongoose.model('Usuarios');
 //CONTROLADOR GENERAL
 //----------------------------------
 exports.index = function(req, res) {
-  res.send("Bienvenido a la API de servicios medicos - MedicalCare -");
+  res.send("Bienvenido a la API de VisualDeer");
 };
 
 //----------------------------------
