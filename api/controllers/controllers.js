@@ -38,6 +38,7 @@ exports.Ver_Equipo = function(req, res) {
 
 //MODIFICAR UN EQUIPO
 exports.Modificar_Equipo = function(req, res) {
+  console.log(req.body);
   Equipos.findOneAndUpdate({codigo: req.params.codigo}, req.body, {new: true}, function(err, equipo) {
     if (err)
       res.send(err);
