@@ -11,7 +11,15 @@ var UsuarioSchema = new Schema({
   cargo: {type: String},
   correo: {type: String},
   telefono: {type: String},
-  nivel: {type: String}
+  nivel: {type: String},
+   reportes:[{
+        codigo: {type: String},
+        nombre: {type: String},
+        modelo: {type: String},
+      fecha_salida: {type: String},
+      fecha_entrada: {type: String}
+     
+  }]
 });
 
 
