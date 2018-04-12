@@ -20,7 +20,7 @@ app.route('/login').post(controller.CheckLogin);
       .get(/*authController.isAuthenticated,*/ controller.Ver_Equipo)
       .put(/*authController.isAuthenticated,*/ controller.Modificar_Equipo)
       .delete(/*authController.isAuthenticated,*/ controller.Eliminar_Equipo);
-
+      
 
 //----------------------------------
 //RUTAS PARA - USUARIOS -

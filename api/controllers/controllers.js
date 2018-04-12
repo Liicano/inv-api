@@ -137,6 +137,7 @@ res.json({
 
 //MODIFICAR UN USUARIO
 exports.Modificar_Usuario = function(req, res) {
+  console.log("Modificar usuario req.body -> ",req.body);
   Usuarios.findOneAndUpdate({cedula: req.params.cedula}, req.body, {new: true}, function(err, usuario) {
     if (err)
       res.send(err);
@@ -176,12 +177,12 @@ exports.sendEmail = function(req, res) {
 
  let transporter = nodemailer.createTransport({
               pool:true,
-              host: 'insignia.com.ve',
+              host: 'smtp.gmail.com',
               port: 465,
               secure: true, // secure:true for port 465, secure:false for port 587
               auth: {
-                  user: 'notificaciones@insignia.com.ve',
-                  pass: 'qwe123#'
+                  user: 'hectorluisgonzalezlarreal@gmail.com',
+                  pass: '*Hl7369372'
               },
               tls: {
                   rejectUnauthorized: false
@@ -191,7 +192,7 @@ exports.sendEmail = function(req, res) {
 
           // setup email data with unicode symbols
           let mailOptions = {
-              from: '"MedicalCare 👻" <notificaciones@insignia.com.ve>', // sender address
+              from: '"CheckRFID 👻" <checkRFID@gmail.com>', // sender address
               to: req.params.email, // list of receivers
               subject: 'Recuperacion de contraseña', // Subject line
               text: '', // plain text body
