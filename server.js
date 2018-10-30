@@ -11,7 +11,7 @@ var passport = require('passport');
   
 // CONEXION A LA BBDD DE MONGO
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/AudioVisualDB'); 
+mongoose.connect('mongodb://Liicano:h7369372@ds019886.mlab.com:19886/inventariodb'); 
 
 // Passport - SESIONES -
 app.use(passport.initialize());
